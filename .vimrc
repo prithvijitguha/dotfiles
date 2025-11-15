@@ -14,10 +14,11 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'dense-analysis/ale'
 
 
-set encoding=UTF-8
-
 call plug#end()
 
+
+set encoding=UTF-8
+set number
 
 let g:coc_disable_startup_warning = 1
 colorscheme codedark
