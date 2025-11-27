@@ -42,7 +42,7 @@ let mapleader = ","
 "autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 
 " Refresh the current folder when Vim gains focus from another application
-autocmd FocusGained * NERDTreeRefreshRoot
+" autocmd FocusGained * NERDTreeRefreshRoot
 
 
 let b:ale_fixers = {'javascript': ['prettier', 'eslint'], 'python': ["flake8", "pylint"],}
