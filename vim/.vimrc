@@ -38,8 +38,8 @@ let g:coc_disable_startup_warning = 1
 let g:coc_default_semantic_highlight_groups = 1
 let mapleader = ","
 " Start NERDTree. If a file is specified, move the cursor to its window.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 
 " Refresh the current folder when Vim gains focus from another application
 autocmd FocusGained * NERDTreeRefreshRoot
@@ -51,3 +51,5 @@ let g:lightline = {
       \ 'colorscheme': 'solarized', 
       \ 'background': 'dark',
       \ }
+nnoremap <C-PageDown> :bnext<CR>
+nnoremap <C-PageUp> :bprevious<CR>
