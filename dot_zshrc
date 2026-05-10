@@ -1,0 +1,86 @@
+# ~/.zshrc: executed by zsh(1) for non-login shells.
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# History Settings
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=2000
+# ignoreboth equivalent: ignore duplicates and lines starting with space
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+# Append to history instead of overwriting
+setopt append_history
+# Share history between different terminal sessions
+setopt share_history
+
+# PATH expansion (globstar equivalent)
+# Zsh has this enabled by default, but you can be explicit:
+setopt globdots
+
+# make less more friendly for non-text input files
+[[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in
+if [[ -z "${debian_chroot:-}" ]] && [[ -r /etc/debian_chroot ]]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# PROMPT CONFIGURATION
+# Zsh uses different escape sequences: %n=user, %m=host, %~=pwd, %#=root/user indicator
+if [[ "$TERM" == (xterm-color|*-256color) ]]; then
+    color_prompt=yes
+fi
+
+if [[ "$color_prompt" == yes ]]; then
+    PROMPT='%F{green}%n@%m%f:%F{blue}%~%f%# '
+    # If you want to keep the debian_chroot logic:
+    [[ -n "$debian_chroot" ]] && PROMPT="($debian_chroot)$PROMPT"
+else
+    PROMPT='%n@%m:%~%# '
+fi
+unset color_prompt
+
+# Set terminal title
+case "$TERM" in
+    xterm*|rxvt*)
+        precmd() { print -Pn "\e]0;${debian_chroot:+($debian_chroot)}%n@%m: %~\a" }
+        ;;
+esac
+
+# enable color support of ls and aliases
+if [[ -x /usr/bin/dircolors ]]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# handy aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# The "alert" alias - updated for Zsh history syntax
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history | tail -n1 | sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Load custom aliases if they exist
+[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
+[[ -f ~/.zsh_aliases ]] && . ~/.zsh_aliases
+
+# Initialize Zsh Completion System
+autoload -Uz compinit
+compinit
+
+# NVM and Cargo
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# Load zsh completion for NVM if it exists
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+
+# Vi key bindings
+bindkey -v
