@@ -35,10 +35,7 @@ This repository is intended to make a fresh Ubuntu installation reproducible wit
 - GitHub CLI
 - uv
 - Rustup / Cargo
-- npm globals:
-  - yarn
-  - pnpm
-  - typescript
+- npm
 
 ### Fonts
 
