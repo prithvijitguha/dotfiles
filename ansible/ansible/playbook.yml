@@ -1,0 +1,151 @@
+- hosts: local
+  become: true
+
+  vars_files:
+    - vars.yml
+
+  tasks:
+
+    ########################################################
+    # APT BASE
+    ########################################################
+
+    - name: Update apt cache
+      apt:
+        update_cache: true
+        cache_valid_time: 3600
+
+    ########################################################
+    # GITHUB CLI REPOSITORY
+    ########################################################
+
+    - name: Create GitHub CLI keyring directory
+      file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: '0755'
+
+    - name: Download GitHub CLI GPG key
+      get_url:
+        url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+        dest: /etc/apt/keyrings/githubcli-archive-keyring.gpg
+        mode: '0644'
+
+    - name: Add GitHub CLI repository
+      apt_repository:
+        repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main"
+        state: present
+        filename: github-cli
+
+    ########################################################
+    # CHEZMOI REPOSITORY
+    ########################################################
+
+    - name: Add chezmoi repository
+      apt_repository:
+        repo: ppa:twpayne/chezmoi
+        state: present
+
+    ########################################################
+    # INSTALL APT PACKAGES
+    ########################################################
+
+    - name: Install apt packages
+      apt:
+        name:
+          - "{{ apt_packages }}"
+          - gh
+          - chezmoi
+        state: present
+        update_cache: true
+
+    ########################################################
+    # NPM GLOBALS
+    ########################################################
+
+    - name: Install npm global packages
+      community.general.npm:
+        name: "{{ item }}"
+        global: true
+      loop: "{{ npm_packages }}"
+
+    ########################################################
+    # UV
+    ########################################################
+
+    - name: Install uv
+      shell: |
+        curl -LsSf https://astral.sh/uv/install.sh | sh
+      args:
+        creates: "{{ ansible_env.HOME }}/.local/bin/uv"
+
+    ########################################################
+    # RUSTUP / CARGO
+    ########################################################
+
+    - name: Install rustup and cargo
+      shell: |
+        curl https://sh.rustup.rs -sSf | sh -s -- -y
+      args:
+        creates: "{{ ansible_env.HOME }}/.cargo/bin/rustup"
+
+    ########################################################
+    # POWERLEVEL10K
+    ########################################################
+
+    - name: Clone Powerlevel10k
+      git:
+        repo: https://github.com/romkatv/powerlevel10k.git
+        dest: "{{ ansible_env.HOME }}/powerlevel10k"
+        depth: 1
+
+    ########################################################
+    # VIM-PLUG
+    ########################################################
+
+    - name: Install vim-plug for Vim
+      get_url:
+        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        dest: "{{ ansible_env.HOME }}/.vim/autoload/plug.vim"
+        mode: '0644'
+
+    - name: Install vim-plug for Neovim
+      get_url:
+        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        dest: "{{ ansible_env.HOME }}/.local/share/nvim/site/autoload/plug.vim"
+        mode: '0644'
+
+    ########################################################
+    # TPM (TMUX PLUGIN MANAGER)
+    ########################################################
+
+    - name: Install TPM
+      git:
+        repo: https://github.com/tmux-plugins/tpm
+        dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
+        depth: 1
+
+    ########################################################
+    # NERD FONT - JETBRAINS MONO
+    ########################################################
+
+    - name: Create fonts directory
+      file:
+        path: "{{ ansible_env.HOME }}/.local/share/fonts"
+        state: directory
+        mode: '0755'
+
+    - name: Download JetBrainsMono Nerd Font
+      get_url:
+        url: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+        dest: /tmp/JetBrainsMono.zip
+
+    - name: Extract JetBrainsMono Nerd Font
+      unarchive:
+        src: /tmp/JetBrainsMono.zip
+        dest: "{{ ansible_env.HOME }}/.local/share/fonts"
+        remote_src: true
+
+    - name: Refresh font cache
+      shell: fc-cache -fv
+      changed_when: false

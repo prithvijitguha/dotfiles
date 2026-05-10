@@ -1,0 +1,24 @@
+apt_packages:
+  - git
+  - curl
+  - wget
+  - zsh
+  - tmux
+  - vim
+  - neovim
+  - htop
+  - unzip
+  - build-essential
+  - ca-certificates
+  - software-properties-common
+  - apt-transport-https
+  - gpg
+  - flatpak
+  - snapd
+  - npm
+  - fonts-noto-color-emoji
+
+npm_packages:
+  - yarn
+  - pnpm
+  - typescript
