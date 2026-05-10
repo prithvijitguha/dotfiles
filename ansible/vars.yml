@@ -16,8 +16,3 @@ apt_packages:
   - snapd
   - npm
   - fonts-noto-color-emoji
-
-npm_packages:
-  - yarn
-  - pnpm
-  - typescript
