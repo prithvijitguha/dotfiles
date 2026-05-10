@@ -59,15 +59,6 @@
         state: present
         update_cache: true
 
-    ########################################################
-    # NPM GLOBALS
-    ########################################################
-
-    - name: Install npm global packages
-      community.general.npm:
-        name: "{{ item }}"
-        global: true
-      loop: "{{ npm_packages }}"
 
     ########################################################
     # UV
