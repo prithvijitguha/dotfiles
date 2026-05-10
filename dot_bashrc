@@ -123,3 +123,5 @@ export NVM_DIR="$HOME/.nvm"
 
 # support for vim key bindings in shell
 set -o vi
+
+. "$HOME/.local/bin/env"
