@@ -123,5 +123,9 @@ export NVM_DIR="$HOME/.nvm"
 
 # support for vim key bindings in shell
 set -o vi
+# Rebind Ctrl+R to history reverse search
+bind '"\C-r": reverse-search-history'
 
+# Flatpak integration
+export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
 . "$HOME/.local/bin/env"
