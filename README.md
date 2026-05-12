@@ -5,10 +5,10 @@ Personal Linux development environment and workstation bootstrap setup using:
 - [chezmoi](https://www.chezmoi.io/) for dotfile management
 - [Ansible](https://www.ansible.com/) for system provisioning
 - Zsh + Oh My Zsh + Powerlevel10k
-- Vim / Neovim / tmux tooling
+- Vim + tmux tooling
 - Rust + Node.js tooling bootstrap
 
-This repository is intended to make a fresh Ubuntu installation reproducible with minimal manual setup.
+This repository is intended to make a fresh Ubuntu installation reproducible with minimal manual setup. 
 
 ---
 
