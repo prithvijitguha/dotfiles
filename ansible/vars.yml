@@ -1,3 +1,6 @@
+real_user: "{{ lookup('env', 'SUDO_USER') | default(lookup('env', 'USER')) }}"
+real_home: "/home/{{ real_user }}"
+
 apt_packages:
   - git
   - curl
@@ -14,5 +17,7 @@ apt_packages:
   - gpg
   - flatpak
   - snapd
-  - npm
   - fonts-noto-color-emoji
+
+npm_packages: 
+  - typescript
