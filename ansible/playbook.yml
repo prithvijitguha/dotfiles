@@ -131,18 +131,6 @@
         dest: "{{ ansible_env.HOME }}/.vim/autoload/plug.vim"
         mode: '0644'
 
-    - name: Create Neovim autoload directory
-      file:
-        path: "{{ ansible_env.HOME }}/.local/share/nvim/site/autoload"
-        state: directory
-        mode: '0755'
-
-    - name: Install vim-plug for Neovim
-      get_url:
-        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        dest: "{{ ansible_env.HOME }}/.local/share/nvim/site/autoload/plug.vim"
-        mode: '0644'
-
     ########################################################
     # TPM (TMUX PLUGIN MANAGER)
     ########################################################
