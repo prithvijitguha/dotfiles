@@ -131,5 +131,9 @@ export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/
 # zinit light zsh-users/zsh-syntax-highlighting
 # zinit light zsh-users/zsh-completions
 
+# To add secrets to environment
+[ -f ~/.zsh_secrets ] && source ~/.zsh_secrets
+
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
