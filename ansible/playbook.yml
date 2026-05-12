@@ -20,9 +20,18 @@
 
     - name: Install apt packages
       apt:
-        name: "{{ apt_packages + ['chezmoi'] }}"
+        name: "{{ apt_packages }}"
         state: present
         update_cache: true
+
+    ########################################################
+    # INSTALL CHEZMOI
+    ########################################################
+
+    - name: Install chezmoi
+      community.general.snap:
+        name: chezmoi
+        classic: true
 
     ########################################################
     # INSTALL NODE.JS + NPM
@@ -131,20 +140,6 @@
       get_url:
         url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         dest: "{{ real_home }}/.vim/autoload/plug.vim"
-        mode: '0644'
-      become: false
-
-    - name: Create Neovim autoload directory
-      file:
-        path: "{{ real_home }}/.local/share/nvim/site/autoload"
-        state: directory
-        mode: '0755'
-      become: false
-
-    - name: Install vim-plug for Neovim
-      get_url:
-        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        dest: "{{ real_home }}/.local/share/nvim/site/autoload/plug.vim"
         mode: '0644'
       become: false
 
