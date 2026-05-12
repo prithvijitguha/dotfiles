@@ -109,10 +109,10 @@
     # POWERLEVEL10K
     ########################################################
 
-    - name: Clone Powerlevel10k
+    - name: Install Powerlevel10k
       git:
         repo: https://github.com/romkatv/powerlevel10k.git
-        dest: "{{ real_home }}/powerlevel10k"
+        dest: "{{ real_home }}/.oh-my-zsh/custom/themes/powerlevel10k"
         depth: 1
       become: false
 
