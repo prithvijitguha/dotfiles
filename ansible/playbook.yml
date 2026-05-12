@@ -1,5 +1,4 @@
 - hosts: local
-  become: true
 
   vars_files:
     - vars.yml
@@ -21,9 +20,7 @@
 
     - name: Install apt packages
       apt:
-        name:
-          - "{{ apt_packages }}"
-          - chezmoi
+        name: "{{ apt_packages + ['chezmoi'] }}"
         state: present
         update_cache: true
 
@@ -33,8 +30,8 @@
 
     - name: Install Node.js
       shell: |
-        curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-        sudo apt install -y nodejs
+        curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
+        apt install -y nodejs
       args:
         creates: /usr/bin/node
 
@@ -44,15 +41,15 @@
 
     - name: Install GitHub CLI
       shell: |
-        (type -p wget >/dev/null || (sudo apt update && sudo apt install wget -y)) \
-        && sudo mkdir -p -m 755 /etc/apt/keyrings \
+        (type -p wget >/dev/null || (apt update && apt install wget -y)) \
+        && mkdir -p -m 755 /etc/apt/keyrings \
         && out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg \
-        && cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
-        && sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
-        && sudo mkdir -p -m 755 /etc/apt/sources.list.d \
-        && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-        && sudo apt update \
-        && sudo apt install gh -y
+        && cat $out | tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
+        && chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
+        && mkdir -p -m 755 /etc/apt/sources.list.d \
+        && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+        && apt update \
+        && apt install gh -y
       args:
         creates: /usr/bin/gh
 
@@ -73,8 +70,9 @@
     - name: Install uv
       shell: |
         curl -LsSf https://astral.sh/uv/install.sh | sh
+      become: false
       args:
-        creates: "{{ ansible_env.HOME }}/.local/bin/uv"
+        creates: "{{ real_home }}/.local/bin/uv"
 
     ########################################################
     # RUSTUP / CARGO
@@ -83,8 +81,9 @@
     - name: Install rustup and cargo
       shell: |
         curl https://sh.rustup.rs -sSf | sh -s -- -y
+      become: false
       args:
-        creates: "{{ ansible_env.HOME }}/.cargo/bin/rustup"
+        creates: "{{ real_home }}/.cargo/bin/rustup"
 
     ########################################################
     # OH MY ZSH
@@ -93,18 +92,20 @@
     - name: Install Oh My Zsh
       git:
         repo: https://github.com/ohmyzsh/ohmyzsh.git
-        dest: "{{ ansible_env.HOME }}/.oh-my-zsh"
+        dest: "{{ real_home }}/.oh-my-zsh"
         depth: 1
+      become: false
 
     ########################################################
     # POWERLEVEL10K
     ########################################################
 
-    - name: Install Powerlevel10k
+    - name: Clone Powerlevel10k
       git:
         repo: https://github.com/romkatv/powerlevel10k.git
-        dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/powerlevel10k"
+        dest: "{{ real_home }}/powerlevel10k"
         depth: 1
+      become: false
 
     ########################################################
     # SET DEFAULT SHELL
@@ -112,7 +113,7 @@
 
     - name: Set zsh as default shell
       user:
-        name: "{{ ansible_user_id }}"
+        name: "{{ real_user }}"
         shell: /usr/bin/zsh
 
     ########################################################
@@ -121,15 +122,31 @@
 
     - name: Create Vim autoload directory
       file:
-        path: "{{ ansible_env.HOME }}/.vim/autoload"
+        path: "{{ real_home }}/.vim/autoload"
         state: directory
         mode: '0755'
+      become: false
 
     - name: Install vim-plug for Vim
       get_url:
         url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        dest: "{{ ansible_env.HOME }}/.vim/autoload/plug.vim"
+        dest: "{{ real_home }}/.vim/autoload/plug.vim"
         mode: '0644'
+      become: false
+
+    - name: Create Neovim autoload directory
+      file:
+        path: "{{ real_home }}/.local/share/nvim/site/autoload"
+        state: directory
+        mode: '0755'
+      become: false
+
+    - name: Install vim-plug for Neovim
+      get_url:
+        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        dest: "{{ real_home }}/.local/share/nvim/site/autoload/plug.vim"
+        mode: '0644'
+      become: false
 
     ########################################################
     # TPM (TMUX PLUGIN MANAGER)
@@ -138,8 +155,9 @@
     - name: Install TPM
       git:
         repo: https://github.com/tmux-plugins/tpm
-        dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
+        dest: "{{ real_home }}/.tmux/plugins/tpm"
         depth: 1
+      become: false
 
     ########################################################
     # NERD FONT - JETBRAINS MONO
@@ -147,9 +165,10 @@
 
     - name: Create fonts directory
       file:
-        path: "{{ ansible_env.HOME }}/.local/share/fonts"
+        path: "{{ real_home }}/.local/share/fonts"
         state: directory
         mode: '0755'
+      become: false
 
     - name: Download JetBrainsMono Nerd Font
       get_url:
@@ -159,9 +178,11 @@
     - name: Extract JetBrainsMono Nerd Font
       unarchive:
         src: /tmp/JetBrainsMono.zip
-        dest: "{{ ansible_env.HOME }}/.local/share/fonts"
+        dest: "{{ real_home }}/.local/share/fonts"
         remote_src: true
+      become: false
 
     - name: Refresh font cache
       shell: fc-cache -fv
+      become: false
       changed_when: false
