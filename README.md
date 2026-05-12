@@ -19,12 +19,10 @@ This repository is intended to make a fresh Ubuntu installation reproducible wit
 - Zsh
 - Oh My Zsh
 - Powerlevel10k
-- Git aliases and shell customizations
 
 ### Editors & Terminal
 
 - Vim
-- Neovim
 - vim-plug
 - tmux
 - TPM (Tmux Plugin Manager)
@@ -41,13 +39,32 @@ This repository is intended to make a fresh Ubuntu installation reproducible wit
 
 - JetBrains Mono Nerd Font
 
-### Provisioning
-
-- Ansible-based workstation bootstrap
-- Idempotent setup
-- Easy machine migration
-
 ---
+
+## Steps to Run: 
+
+```bash
+git clone https://github.com/prithvijitguha/dotfiles.git
+```
+
+Change into ansible directory
+```bash
+cd ansible 
+```
+
+Make it executable
+```bash
+chmod +x ./bootstrap.sh
+```
+Run the bootstrap sh script
+```bash
+./bootstrap.sh
+```
+
+Finally apply chezmoi config for dot files 
+```bash
+chezmoi init --apply prithvijitguha
+```
 
 # Repository Structure
 
