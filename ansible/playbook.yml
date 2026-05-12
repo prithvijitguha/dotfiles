@@ -100,10 +100,10 @@
     # POWERLEVEL10K
     ########################################################
 
-    - name: Clone Powerlevel10k
+    - name: Install Powerlevel10k
       git:
         repo: https://github.com/romkatv/powerlevel10k.git
-        dest: "{{ ansible_env.HOME }}/powerlevel10k"
+        dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/powerlevel10k"
         depth: 1
 
     ########################################################
