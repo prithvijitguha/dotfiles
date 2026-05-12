@@ -2,6 +2,8 @@
 
 set -e
 
+cd "$(dirname "$0")"
+
 sudo apt update
 
 sudo apt install -y \
@@ -13,4 +15,4 @@ sudo apt install -y \
 
 ansible-galaxy collection install -r requirements.yml
 
-ansible-playbook playbook.yml -K
+ansible-playbook playbook.yml
