@@ -16,49 +16,55 @@
         cache_valid_time: 3600
 
     ########################################################
-    # GITHUB CLI REPOSITORY
-    ########################################################
-
-    - name: Create GitHub CLI keyring directory
-      file:
-        path: /etc/apt/keyrings
-        state: directory
-        mode: '0755'
-
-    - name: Download GitHub CLI GPG key
-      get_url:
-        url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
-        dest: /etc/apt/keyrings/githubcli-archive-keyring.gpg
-        mode: '0644'
-
-    - name: Add GitHub CLI repository
-      apt_repository:
-        repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main"
-        state: present
-        filename: github-cli
-
-    ########################################################
-    # CHEZMOI REPOSITORY
-    ########################################################
-
-    - name: Add chezmoi repository
-      apt_repository:
-        repo: ppa:twpayne/chezmoi
-        state: present
-
-    ########################################################
-    # INSTALL APT PACKAGES
+    # INSTALL BASE APT PACKAGES
     ########################################################
 
     - name: Install apt packages
       apt:
         name:
           - "{{ apt_packages }}"
-          - gh
           - chezmoi
         state: present
         update_cache: true
 
+    ########################################################
+    # INSTALL NODE.JS + NPM
+    ########################################################
+
+    - name: Install Node.js
+      shell: |
+        curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+        sudo apt install -y nodejs
+      args:
+        creates: /usr/bin/node
+
+    ########################################################
+    # INSTALL GITHUB CLI
+    ########################################################
+
+    - name: Install GitHub CLI
+      shell: |
+        (type -p wget >/dev/null || (sudo apt update && sudo apt install wget -y)) \
+        && sudo mkdir -p -m 755 /etc/apt/keyrings \
+        && out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+        && cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
+        && sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
+        && sudo mkdir -p -m 755 /etc/apt/sources.list.d \
+        && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+        && sudo apt update \
+        && sudo apt install gh -y
+      args:
+        creates: /usr/bin/gh
+
+    ########################################################
+    # NPM GLOBALS
+    ########################################################
+
+    - name: Install npm global packages
+      community.general.npm:
+        name: "{{ item }}"
+        global: true
+      loop: "{{ npm_packages }}"
 
     ########################################################
     # UV
@@ -81,6 +87,16 @@
         creates: "{{ ansible_env.HOME }}/.cargo/bin/rustup"
 
     ########################################################
+    # OH MY ZSH
+    ########################################################
+
+    - name: Install Oh My Zsh
+      git:
+        repo: https://github.com/ohmyzsh/ohmyzsh.git
+        dest: "{{ ansible_env.HOME }}/.oh-my-zsh"
+        depth: 1
+
+    ########################################################
     # POWERLEVEL10K
     ########################################################
 
@@ -91,14 +107,35 @@
         depth: 1
 
     ########################################################
+    # SET DEFAULT SHELL
+    ########################################################
+
+    - name: Set zsh as default shell
+      user:
+        name: "{{ ansible_user_id }}"
+        shell: /usr/bin/zsh
+
+    ########################################################
     # VIM-PLUG
     ########################################################
+
+    - name: Create Vim autoload directory
+      file:
+        path: "{{ ansible_env.HOME }}/.vim/autoload"
+        state: directory
+        mode: '0755'
 
     - name: Install vim-plug for Vim
       get_url:
         url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         dest: "{{ ansible_env.HOME }}/.vim/autoload/plug.vim"
         mode: '0644'
+
+    - name: Create Neovim autoload directory
+      file:
+        path: "{{ ansible_env.HOME }}/.local/share/nvim/site/autoload"
+        state: directory
+        mode: '0755'
 
     - name: Install vim-plug for Neovim
       get_url:
