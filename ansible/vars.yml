@@ -21,3 +21,10 @@ apt_packages:
 
 npm_packages: 
   - typescript
+
+gtk_theme: "Catppuccin-Mocha-Standard-Blue-Dark"
+icon_theme: "Papirus-Dark"
+cursor_theme: "DMZ-White"
+
+catppuccin_flavor: "mocha"
+catppuccin_accent: "mauve"

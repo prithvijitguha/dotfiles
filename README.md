@@ -8,7 +8,7 @@ Personal Linux development environment and workstation bootstrap setup using:
 - Vim + tmux tooling
 - Rust + Node.js tooling bootstrap
 
-This repository is intended to make a fresh Ubuntu installation reproducible with minimal manual setup. 
+This repository is intended to make a fresh Ubuntu installation reproducible with minimal manual setup.
 
 ---
 
@@ -26,6 +26,7 @@ This repository is intended to make a fresh Ubuntu installation reproducible wit
 - vim-plug
 - tmux
 - TPM (Tmux Plugin Manager)
+- Ghostty terminal configuration
 
 ### Development Tooling
 
@@ -34,6 +35,14 @@ This repository is intended to make a fresh Ubuntu installation reproducible wit
 - uv
 - Rustup / Cargo
 - npm
+
+### Desktop Theming
+
+- Catppuccin GTK theme
+- Papirus icon theme
+- Catppuccin Papirus folders
+- GTK 4.0 configuration
+- Wofi launcher configuration
 
 ### Fonts
 
@@ -77,8 +86,13 @@ chezmoi init --apply prithvijitguha
 │   ├── playbook.yml
 │   ├── requirements.yml
 │   └── vars.yml
-├── dot_config/
-├── dot_zshrc
+├── ghostty/
+├── wofi/
+├── dot_bashrc
+├── dot_p10k.zsh
+├── dot_profile
 ├── dot_tmux.conf
 ├── dot_vimrc
+├── dot_zshrc
 └── README.md
+```

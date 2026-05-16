@@ -1,0 +1,23 @@
+theme = Catppuccin Mocha
+
+font-family = "JetBrainsMono Nerd Font"
+font-size = 11
+
+background-opacity = 0.92
+
+window-padding-x = 10
+window-padding-y = 10
+
+gtk-titlebar = false
+
+cursor-style = block
+cursor-style-blink = true
+
+mouse-hide-while-typing = true
+
+copy-on-select = clipboard
+
+shell-integration = zsh
+
+window-save-state = always
+window-theme = dark

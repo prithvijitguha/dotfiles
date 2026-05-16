@@ -181,3 +181,42 @@
       shell: fc-cache -fv
       become: false
       changed_when: false
+
+    - name: Install Papirus icon theme
+      apt:
+        name:
+          - papirus-icon-theme
+        state: present
+      become: true
+
+    - name: Clone Catppuccin Papirus folders
+      git:
+        repo: "https://github.com/catppuccin/papirus-folders.git"
+        dest: "/tmp/papirus-folders"
+        depth: 1
+
+    - name: Install Catppuccin Papirus assets
+      command: cp -r /tmp/papirus-folders/src/* /usr/share/icons/Papirus/
+      become: true
+
+    - name: Apply Catppuccin Papirus folder color
+      command: >
+        papirus-folders -C cat-{{ catppuccin_flavor }}-{{ catppuccin_accent }}
+
+    - name: Set GTK theme
+       become: false
+       command: >
+         gsettings set org.gnome.desktop.interface
+         gtk-theme "{{ gtk_theme }}"
+
+    - name: Set icon theme
+      become: false
+      command: >
+        gsettings set org.gnome.desktop.interface
+        icon-theme "{{ icon_theme }}"
+    
+    - name: Enable dark mode
+      become: false
+      command: >
+        gsettings set org.gnome.desktop.interface
+        color-scheme prefer-dark
