@@ -86,8 +86,7 @@ chezmoi init --apply prithvijitguha
 │   ├── playbook.yml
 │   ├── requirements.yml
 │   └── vars.yml
-├── ghostty/
-├── wofi/
+├── private_dot_config/
 ├── dot_bashrc
 ├── dot_p10k.zsh
 ├── dot_profile

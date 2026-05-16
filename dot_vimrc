@@ -118,3 +118,5 @@ else
 endif
 
 set clipboard=unnamed
+let NERDTreeShowHidden=1
+
