@@ -220,3 +220,33 @@
       command: >
         gsettings set org.gnome.desktop.interface
         color-scheme prefer-dark
+
+    ########################################################
+    # HOMEBREW
+    ########################################################
+   
+    - name: Install Homebrew dependencies
+      apt:
+        name:
+          - build-essential
+          - procps
+          - curl
+          - file
+          - git
+        state: present
+
+    - name: Install Homebrew
+      shell: |
+        NONINTERACTIVE=1 /bin/bash -c \
+        "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      args:
+        creates: "{{ real_home }}/.linuxbrew/bin/brew"
+      become: false
+
+    - name: Add Homebrew to zshrc
+      lineinfile:
+        path: "{{ real_home }}/.zshrc"
+        line: 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
+        create: true
+        state: present
+      become: false
