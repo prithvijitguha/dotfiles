@@ -122,4 +122,7 @@ export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 . "/home/prithvijit/.deno/env"
 
+# Setup copy alias
+alias copy='xclip -sel clip'
+
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
