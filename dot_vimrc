@@ -119,4 +119,5 @@ endif
 
 set clipboard=unnamed
 let NERDTreeShowHidden=1
-
+" To help with case insensitive search 
+set ignorecase
