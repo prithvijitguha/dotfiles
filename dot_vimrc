@@ -91,12 +91,6 @@ let g:lightline = {
 nnoremap <C-PageDown> :bnext<CR>
 nnoremap <C-PageUp> :bprevious<CR>
 
-" Move between splits with Ctrl + hjkl
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
 set clipboard=unnamed
 let NERDTreeShowHidden=1
 " To help with case insensitive search 
