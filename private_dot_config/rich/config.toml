@@ -1,0 +1,12 @@
+[theme]
+markdown.code = "cyan"
+repr.number = "bright_blue"
+repr.string = "green"
+
+table.header = "bold cyan"
+table.border = "grey50"
+
+json.key = "bright_magenta"
+json.str = "green"
+
+log.time = "bright_black"
