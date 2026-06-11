@@ -26,6 +26,7 @@ Plug 'tpope/vim-commentary'
 Plug 'machakann/vim-sandwich'
 Plug 'vlime/vlime'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'TaDaa/vimade'
 
 call plug#end()
 
