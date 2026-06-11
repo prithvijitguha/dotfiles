@@ -222,3 +222,12 @@ jsonview() {
 richmd() {
     rich "$1"
 }
+
+# Better ls
+alias ls='eza --icons'
+alias ll='eza -lah --icons --git'
+alias lt='eza --tree --level=2 --icons'
+
+# Cat replacement
+# Its batcat due to package clash in apt
+alias cat='batcat'
