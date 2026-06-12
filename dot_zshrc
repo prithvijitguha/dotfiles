@@ -233,6 +233,6 @@ alias lt='eza --tree --level=2 --icons'
 alias cat='batcat'
 
 
-if [[ -f "$HOME/.zsh_secrets" ]]; then
-    source "$HOME/.zsh_secrets"
+if [[ -f "$HOME/.zshrc_secrets" ]]; then
+    source "$HOME/.zshrc_secrets"
 fi
