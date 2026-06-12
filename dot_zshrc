@@ -231,3 +231,8 @@ alias lt='eza --tree --level=2 --icons'
 # Cat replacement
 # Its batcat due to package clash in apt
 alias cat='batcat'
+
+
+if [[ -f "$HOME/.zsh_secrets" ]]; then
+    source "$HOME/.zsh_secrets"
+fi
