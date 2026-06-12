@@ -23,6 +23,10 @@ setopt AUTO_CD
 setopt EXTENDED_HISTORY
 setopt INTERACTIVE_COMMENTS
 
+# Gives accurate color
+export TERM=xterm-256color
+
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME

@@ -27,6 +27,7 @@ Plug 'machakann/vim-sandwich'
 Plug 'vlime/vlime'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'TaDaa/vimade'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 
 call plug#end()
 
@@ -96,3 +97,9 @@ set clipboard=unnamed
 let NERDTreeShowHidden=1
 " To help with case insensitive search 
 set ignorecase
+
+" For tmux integration 
+let g:vimade = {}
+let g:vimade.fadelevel = 0.6
+let g:vimade.enablefocusfading = 1
+let g:vimade.groupdiff = 1
