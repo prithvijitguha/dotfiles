@@ -140,7 +140,7 @@ export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-. "/home/prithvijit/.deno/env"
+. "$HOME/.deno/env"
 
 # Setup copy alias
 alias copy='xclip -sel clip'
@@ -148,7 +148,7 @@ alias copy='xclip -sel clip'
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
 
 # Created by `pipx` on 2026-06-10 15:19:17
-export PATH="$PATH:/home/prithvijit/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 # Setup for using Rich to make it more like nu-shell
 export LESS='-R'
