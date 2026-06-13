@@ -98,4 +98,8 @@ let NERDTreeShowHidden=1
 " To help with case insensitive search 
 set ignorecase
 
-
+" For tmux integration 
+let g:vimade = {}
+let g:vimade.fadelevel = 0.6
+let g:vimade.enablefocusfading = 1
+let g:vimade.groupdiff = 1
