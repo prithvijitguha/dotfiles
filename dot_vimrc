@@ -17,7 +17,6 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive' 
 Plug 'ryanoasis/vim-devicons'
-Plug 'dense-analysis/ale'
 Plug 'tomasiser/vim-code-dark'
 Plug 'sheerun/vim-polyglot'
 Plug 'davidhalter/jedi-vim'
@@ -28,13 +27,17 @@ Plug 'vlime/vlime'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'TaDaa/vimade'
 Plug 'tmux-plugins/vim-tmux-focus-events'
-
+Plug 'liuchengxu/vim-which-key'
 call plug#end()
 
 set encoding=UTF-8
 set number
 set termguicolors
 set noswapfile
+
+" enable filetype plugins and syntax highlighting
+filetype plugin indent on
+syntax on
 
 let g:coc_disable_startup_warning = 1
 colorscheme codedark
@@ -44,16 +47,13 @@ highlight Normal guibg=#0B1c2c ctermbg=NONE
 let g:coc_disable_startup_warning = 1
 let g:coc_default_semantic_highlight_groups = 1
 let mapleader = ","
-
 " Start NERDTree. If a file is specified, move the cursor to its window.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 
 " Refresh the current folder when Vim gains focus from another application
 autocmd FocusGained * NERDTreeRefreshRoot
 
-
-let b:ale_fixers = {'javascript': ['prettier', 'eslint'], 'python': ["flake8", "pylint"],}
 
 " Function to show the paths inside vim 
 " If git relative 
@@ -99,5 +99,12 @@ let NERDTreeShowHidden=1
 " To help with case insensitive search 
 set ignorecase
 
-au! FocusLost * VimadeFadeActive
-au! FocusGained * VimadeUnfadeActive
+" For tmux integration 
+let g:vimade = {}
+let g:vimade.fadelevel = 0.6
+let g:vimade.enablefocusfading = 1
+let g:vimade.groupdiff = 1
+
+" Adding dbt support
+source $HOME/.vim/config/dbt.vimrc
+
