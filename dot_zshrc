@@ -248,3 +248,5 @@ alias ga="git add"
 alias gc="git commit -m"
 alias gp="git push"
 alias gacp='f() { git add -A && git commit -m "$1" && git push; }; f'
+alias gits="git status" 
+
