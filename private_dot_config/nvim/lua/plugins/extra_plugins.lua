@@ -7,7 +7,6 @@ return {
       -- Custom Vimade configuration can go here if needed
     end,
   },
-
   {
     "mg979/vim-visual-multi",
     branch = "master",
