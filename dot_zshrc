@@ -241,7 +241,6 @@ if [[ -f "$HOME/.zshrc_secrets" ]]; then
     source "$HOME/.zshrc_secrets"
 fi
 
-export PATH="$PATH:/opt/nvim/"
 
 # Git commands alias 
 alias ga="git add"
