@@ -20,3 +20,4 @@ sudo apt install -y gpg
 sudo apt install -y flatpak
 sudo apt install -y snapd
 sudo apt install -y fonts-noto-color-emoji
+sudo apt install -y flameshot
