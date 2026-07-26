@@ -12,10 +12,20 @@ sudo snap install chezmoi --classic
 # NODE.JS + NPM
 #
 
-if [ ! -f /usr/bin/node ]; then
-  curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo bash -
-  sudo apt install -y nodejs
-fi
+# Download and install nvm:
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.6/install.sh | bash
+
+# in lieu of restarting the shell
+\. "$HOME/.nvm/nvm.sh"
+
+# Download and install Node.js:
+nvm install 24
+
+# Verify the Node.js version:
+node -v # Should print "v24.18.0".
+
+# Verify npm version:
+npm -v # Should print "11.16.0".
 
 #
 # GITHUB CLI
@@ -85,23 +95,6 @@ git clone --depth=1 \
 #
 
 chsh -s /usr/bin/zsh
-
-#
-# VIM PLUG
-#
-
-mkdir -p "$HOME/.vim/autoload"
-
-curl -fLo "$HOME/.vim/autoload/plug.vim" \
-  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-#
-# TMUX PLUGIN MANAGER
-#
-
-git clone --depth=1 \
-  https://github.com/tmux-plugins/tpm \
-  "$HOME/.tmux/plugins/tpm"
 
 #
 # JETBRAINS MONO NERD FONT
