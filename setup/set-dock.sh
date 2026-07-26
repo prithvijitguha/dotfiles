@@ -5,7 +5,7 @@ apps=(
   "firefox"
   "steam"
   "stremio"
-  "nautilus"
+  "spotify"
 )
 
 desktop_dirs=(
