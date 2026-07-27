@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cp setup/icons/music.png /home/$USER/.local/share/youtube-music/icons/music.png
+
 cat <<EOF >~/.local/share/applications/chrome-music.youtube.com__-Default.desktop
 [Desktop Entry]
 Version=1.0
