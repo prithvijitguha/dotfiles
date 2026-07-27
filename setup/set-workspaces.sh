@@ -1,14 +1,29 @@
 #!/bin/bash
-# ------------------------------------------------------------------------------
-# Workspace assignments (Auto Move Windows)
-#
-# Workspace 1 : Programming -> Ghostty
-# Workspace 2 : Browser    -> Firefox
-# Workspace 3 : Gaming     -> Steam
-# Workspace 4 : Media      -> Stremio
-# Workspace 5 : Reserved
-# Workspace 6 : Reserved
-# ------------------------------------------------------------------------------
+set -e
+
+SCHEMA_DIR="$HOME/.local/share/gnome-shell/extensions/workspace-indicator@gnome-shell-extensions.gcampax.github.com/schemas"
+
+# Workspace Indicator: show names instead of previews
+glib-compile-schemas "$SCHEMA_DIR"
+GSETTINGS_SCHEMA_DIR="$SCHEMA_DIR" \
+  gsettings set org.gnome.shell.extensions.workspace-indicator embed-previews false
+
+# Fixed number of workspaces
+gsettings set org.gnome.mutter dynamic-workspaces false
+
+# Number of workspaces
+gsettings set org.gnome.desktop.wm.preferences num-workspaces 6
+
+# Workspace names
+gsettings set org.gnome.desktop.wm.preferences workspace-names \
+  "[
+'Programming',
+'Browser',
+'Gaming',
+'Media',
+'Communication',
+'Misc'
+]"
 
 gsettings set org.gnome.shell.extensions.auto-move-windows application-list \
   "[
@@ -16,7 +31,7 @@ gsettings set org.gnome.shell.extensions.auto-move-windows application-list \
 'firefox_firefox.desktop:2',
 'steam.desktop:3',
 'com.stremio.Stremio.desktop:4',
-'chrome-music.youtube.com__-Default.desktop:5',
+'chrome-music.youtube.com__-Default.desktop:4',
 'Signal.desktop:5',
-'chrome-web.whatsapp.com__-Default.desktop:6'
+'chrome-web.whatsapp.com__-Default.desktop:5'
 ]"
