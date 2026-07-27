@@ -16,5 +16,7 @@ gsettings set org.gnome.shell.extensions.auto-move-windows application-list \
 'firefox_firefox.desktop:2',
 'steam.desktop:3',
 'com.stremio.Stremio.desktop:4',
-'spotify.desktop:5'
+'chrome-music.youtube.com__-Default.desktop:5',
+'Signal.desktop:5',
+'chrome-web.whatsapp.com__-Default.desktop:6'
 ]"
