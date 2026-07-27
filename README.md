@@ -1,97 +1,31 @@
 # dotfiles
 
-Personal Linux development environment and workstation bootstrap setup using:
+Dotfiles for Ubuntu setup
 
-- [chezmoi](https://www.chezmoi.io/) for dotfile management
-- [Ansible](https://www.ansible.com/) for system provisioning
-- Zsh + Oh My Zsh + Powerlevel10k
-- Vim + tmux tooling
-- Rust + Node.js tooling bootstrap
+![Demo Screenshot](assets/dotfiles.jpeg)
 
-This repository is intended to make a fresh Ubuntu installation reproducible with minimal manual setup.
+## Instructions to run
 
----
-
-## Features
-
-### Shell Environment
-
-- Zsh
-- Oh My Zsh
-- Powerlevel10k
-
-### Editors & Terminal
-
-- Vim
-- vim-plug
-- tmux
-- TPM (Tmux Plugin Manager)
-- Ghostty terminal configuration
-
-### Development Tooling
-
-- Git
-- GitHub CLI
-- uv
-- Rustup / Cargo
-- npm
-
-### Desktop Theming
-
-- Catppuccin GTK theme
-- Papirus icon theme
-- Catppuccin Papirus folders
-- GTK 4.0 configuration
-- Wofi launcher configuration
-
-### Fonts
-
-- JetBrains Mono Nerd Font
-
----
-
-## Steps to Run: 
-
-```bash
-git clone https://github.com/prithvijitguha/dotfiles.git
+```shell
+chmod +x setup/* 
 ```
 
-Change into ansible directory
-```bash
-cd ansible 
+```shell
+bash setup/bootstrap.sh 
+bash setup/install-apt-packages.sh 
+bash setup/configure-env.sh 
+bash setup/gnome-extensions.sh
+bash setup/gnome-settings.sh
+bash setup/whatsapp.sh
+bash setup/youtube-music.sh
+bash setup/set-app-grid.sh
+bash setup/gnome-hotkeys.sh
+bash setup/set-dock.sh
+bash setup/set-workspaces.sh
 ```
 
-Make it executable
-```bash
-chmod +x ./bootstrap.sh
-```
-Run the bootstrap sh script
-```bash
-./bootstrap.sh
-```
+```shell
 
-Finally apply chezmoi config for dot files 
-```bash
-chezmoi init --apply prithvijitguha
-```
+chezmoi apply -v 
 
-# Repository Structure
-
-```text
-.
-├── ansible/
-│   ├── ansible.cfg
-│   ├── bootstrap.sh
-│   ├── inventory
-│   ├── playbook.yml
-│   ├── requirements.yml
-│   └── vars.yml
-├── private_dot_config/
-├── dot_bashrc
-├── dot_p10k.zsh
-├── dot_profile
-├── dot_tmux.conf
-├── dot_vimrc
-├── dot_zshrc
-└── README.md
 ```

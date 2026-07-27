@@ -21,3 +21,9 @@ sudo apt install -y flatpak
 sudo apt install -y snapd
 sudo apt install -y fonts-noto-color-emoji
 sudo apt install -y flameshot
+sudo apt install -y chezmoi
+
+curl -sS https://download.spotify.com/debian/pubkey_5384CE82BA52C83A.asc | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+
+sudo apt-get update && sudo apt-get install spotify-client
