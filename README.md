@@ -6,7 +6,7 @@ Dotfiles for Ubuntu setup
 
 ## Instructions to run
 
-![Demo Video](assets/dot_files_demo_video.mp4)
+![Demo Video](./assets/dot_files_demo_video.mp4)
 
 ```shell
 chmod +x setup/* 
