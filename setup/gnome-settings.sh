@@ -11,3 +11,9 @@ gsettings set org.gnome.desktop.calendar show-weekdate true
 
 # Turn off ambient sensors for setting screen brightness (they rarely work well!)
 gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
+
+# Set the background image
+BACKGROUND_DEST_PATH="$HOME/.local/share/backgrounds/shaded_landscape.png"
+cp "./assets/shaded_landscape.png" $BACKGROUND_DEST_PATH
+gsettings set org.gnome.desktop.background picture-uri $BACKGROUND_DEST_PATH
+gsettings set org.gnome.desktop.background picture-uri-dark $BACKGROUND_DEST_PATH
