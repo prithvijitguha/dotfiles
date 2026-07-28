@@ -8,8 +8,6 @@ Dotfiles for Ubuntu setup
 
 ![Demo Video](./assets/dot_files_demo_video.mp4)
 
-<video src="./assets/dot_files_demo_video.mp4" width="100%" controls></video>
-
 ```shell
 chmod +x setup/* 
 ```
