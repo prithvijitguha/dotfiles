@@ -129,19 +129,6 @@ sudo cp -r /tmp/papirus-folders/src/* /usr/share/icons/Papirus/
 
 papirus-folders -C cat-mocha-mauve
 
-#
-# GTK
-#
-
-gsettings set org.gnome.desktop.interface \
-  gtk-theme "Catppuccin-Mocha-Standard-Blue-Dark"
-
-gsettings set org.gnome.desktop.interface \
-  icon-theme "Papirus-Dark"
-
-gsettings set org.gnome.desktop.interface \
-  color-scheme prefer-dark
-
 sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
 echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list

@@ -6,8 +6,7 @@ Dotfiles for Ubuntu setup
 
 ## Instructions to run
 
-
-[![Demo Video](https://youtu.be/3s-N7nsfI2Q)](https://youtu.be/3s-N7nsfI2Q) 
+[![Demo Video](https://youtu.be/3s-N7nsfI2Q)](https://youtu.be/3s-N7nsfI2Q)
 
 ```shell
 chmod +x setup/* 
@@ -32,3 +31,5 @@ bash setup/set-workspaces.sh
 chezmoi apply -v 
 
 ```
+
+References: Lot of inspiration taken from the amazing Omakub Repo: [https://github.com/basecamp/omakub](https://github.com/basecamp/omakub)

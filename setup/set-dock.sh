@@ -52,3 +52,4 @@ echo "Favorites:"
 printf '  %s\n' "${installed_apps[@]}"
 
 gsettings set org.gnome.shell favorite-apps "$favorites_list"
+gsettings set org.gnome.shell.extensions.dash-to-dock show-show-apps-button false
