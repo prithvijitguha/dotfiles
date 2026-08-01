@@ -24,6 +24,8 @@ sudo apt install -y fd-find
 sudo apt install -y fzf
 sudo apt install -y gpg
 sudo apt install -y pipx
+sudo apt install -y gir1.2-gnomedesktop-4.0
+
 # Install eza
 if ! command -v eza >/dev/null 2>&1; then
     sudo mkdir -p /etc/apt/keyrings
