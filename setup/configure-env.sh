@@ -3,11 +3,16 @@
 set -e
 
 # Homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if [ ! -d "/home/linuxbrew/.linuxbrew" ]; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 
-# source ~/.bashrc
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-brew install chezmoi 
+# Chezmoi install
+if ! command -v chezmoi >/dev/null 2>&1; then
+    brew install chezmoi
+fi
 
 # Download and install nvm:
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
@@ -74,27 +79,47 @@ chsh -s /usr/bin/zsh
 
 mkdir -p "$HOME/.local/share/fonts"
 
-wget \
-  -O /tmp/JetBrainsMono.zip \
-  https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+#
+# JETBRAINS MONO NERD FONT
+#
 
-unzip -o /tmp/JetBrainsMono.zip \
-  -d "$HOME/.local/share/fonts"
+if [ ! -d "$HOME/.local/share/fonts/JetBrainsMono" ]; then
+    mkdir -p "$HOME/.local/share/fonts/JetBrainsMono"
 
-fc-cache -fv
+    wget \
+        -O /tmp/JetBrainsMono.zip \
+        https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+
+    unzip -o /tmp/JetBrainsMono.zip \
+        -d "$HOME/.local/share/fonts/JetBrainsMono"
+
+    fc-cache -fv
+fi
 
 #
 # PAPIRUS
 #
 
-sudo apt install -y papirus-icon-theme
+if ! dpkg -s papirus-icon-theme >/dev/null 2>&1; then
+    sudo apt update
+    sudo apt install -y papirus-icon-theme
+fi
 
-sudo apt install -y gnome-sushi
+if ! dpkg -s gnome-sushi >/dev/null 2>&1; then
+    sudo apt update
+    sudo apt install -y gnome-sushi
+fi
 
-git clone --depth=1 \
-  https://github.com/catppuccin/papirus-folders.git \
-  /tmp/papirus-folders
+if [ ! -d "/tmp/papirus-folders/.git" ]; then
+    git clone --depth=1 \
+        https://github.com/catppuccin/papirus-folders.git \
+        /tmp/papirus-folders
+fi
 
-sudo cp -r /tmp/papirus-folders/src/* /usr/share/icons/Papirus/
+if [ ! -f "/usr/share/icons/Papirus/index.theme.bak" ]; then
+    sudo cp -r /tmp/papirus-folders/src/* /usr/share/icons/Papirus/
+fi
+
+# papirus-folders -C cat-mocha-mauv
 
 # papirus-folders -C cat-mocha-mauve
