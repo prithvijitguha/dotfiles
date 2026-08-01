@@ -110,16 +110,6 @@ if ! dpkg -s gnome-sushi >/dev/null 2>&1; then
     sudo apt install -y gnome-sushi
 fi
 
-if [ ! -d "/tmp/papirus-folders/.git" ]; then
-    git clone --depth=1 \
-        https://github.com/catppuccin/papirus-folders.git \
-        /tmp/papirus-folders
-fi
-
-if [ ! -f "/usr/share/icons/Papirus/index.theme.bak" ]; then
-    sudo cp -r /tmp/papirus-folders/src/* /usr/share/icons/Papirus/
-fi
-
-# papirus-folders -C cat-mocha-mauv
-
-# papirus-folders -C cat-mocha-mauve
+# Install zsh plugins 
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
