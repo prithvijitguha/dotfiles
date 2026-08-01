@@ -1,6 +1,6 @@
 # dotfiles
 
-Dotfiles for Ubuntu setup
+Dotfiles for Debian setup
 
 ![Demo Screenshot](assets/dotfiles.jpeg)
 
@@ -13,17 +13,17 @@ chmod +x setup/*
 ```
 
 ```shell
-bash setup/bootstrap.sh 
-bash setup/install-apt-packages.sh 
-bash setup/configure-env.sh 
-bash setup/gnome-extensions.sh
-bash setup/gnome-settings.sh
-bash setup/whatsapp.sh
-bash setup/youtube-music.sh
-bash setup/set-app-grid.sh
-bash setup/gnome-hotkeys.sh
-bash setup/set-dock.sh
-bash setup/set-workspaces.sh
+./setup/bootstrap.sh 
+./setup/install-apt-packages.sh 
+./setup/configure-env.sh 
+./setup/gnome-extensions.sh
+./setup/gnome-settings.sh
+./setup/whatsapp.sh
+./setup/youtube-music.sh
+./setup/set-app-grid.sh
+./setup/gnome-hotkeys.sh
+./setup/set-dock.sh
+./setup/set-workspaces.sh
 ```
 
 ```shell
