@@ -14,21 +14,17 @@ if ! command -v chezmoi >/dev/null 2>&1; then
     brew install chezmoi
 fi
 
-# Download and install nvm:
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-
-# in lieu of restarting the shell
-\. "$HOME/.nvm/nvm.sh"
 
 # Download and install Node.js:
-nvm install --lts 
+brew install -y node@24
 
 # Verify the Node.js version:
-node -v 
-# Verify npm version:
-npm -v 
+node -v # Should print "v24.18.1".
 
-source ~/.bashrc
+# Verify npm version:
+npm -v # Should print "11.16.0".
+
+source ~/.zshrc
 
 npm install -g typescript
 
