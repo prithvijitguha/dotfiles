@@ -127,6 +127,11 @@ if ! command -v ghostty >/dev/null 2>&1; then
 fi
 
 # Install bat 
-git clone https://github.com/bats-core/bats-core.git /tmp/bats-core
-cd /tmp/bats-core
-./install.sh /usr/local
+if ! command -v bat >/dev/null 2>&1 && ! command -v batcat >/dev/null 2>&1; then
+    git clone https://github.com/bats-core/bats-core.git /tmp/bats-core
+    cd /tmp/bats-core
+    ./install.sh /usr/local
+fi
+
+# Make zsh default shell 
+chsh -s $(which zsh)

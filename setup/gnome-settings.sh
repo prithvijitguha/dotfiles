@@ -24,3 +24,4 @@ export BACKGROUND_DEST_PATH="$HOME/.local/share/backgrounds/shaded_landscape.png
 cp "./assets/shaded_landscape.png" $BACKGROUND_DEST_PATH
 gsettings set org.gnome.desktop.background picture-uri $BACKGROUND_DEST_PATH
 gsettings set org.gnome.desktop.background picture-uri-dark $BACKGROUND_DEST_PATH
+gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
