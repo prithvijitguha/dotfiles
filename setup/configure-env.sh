@@ -16,7 +16,9 @@ fi
 
 
 # Download and install Node.js:
-brew install -y node@24
+if ! brew list --formula node@24 >/dev/null 2>&1; then
+    brew install node@24
+fi
 
 # Verify the Node.js version:
 node -v # Should print "v24.18.1".
@@ -24,61 +26,38 @@ node -v # Should print "v24.18.1".
 # Verify npm version:
 npm -v # Should print "11.16.0".
 
-source ~/.zshrc
+if ! npm list -g typescript >/dev/null 2>&1; then
+    npm install -g typescript
+fi
 
-npm install -g typescript
-
-#
 # UV
-#
-
 if [ ! -f "$HOME/.local/bin/uv" ]; then
   curl -LsSf https://astral.sh/uv/install.sh | sh
 fi
 
-#
 # RUSTUP
-#
-
 if [ ! -f "$HOME/.cargo/bin/rustup" ]; then
   curl https://sh.rustup.rs -sSf | sh -s -- -y
 fi
 
-#
 # OH MY ZSH
-#
-
 if [ ! -d "$HOME/.oh-my-zsh/.git" ]; then
     git clone --depth=1 \
         https://github.com/ohmyzsh/ohmyzsh.git \
         "$HOME/.oh-my-zsh"
 fi
 
-#
 # POWERLEVEL10K
-#
-
 if [ ! -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k/.git" ]; then
   git clone --depth=1 \
   https://github.com/romkatv/powerlevel10k.git \
   "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
 fi
-#
-# SET DEFAULT SHELL
-#
 
-chsh -s /usr/bin/zsh
-
-#
 # JETBRAINS MONO NERD FONT
-#
-
 mkdir -p "$HOME/.local/share/fonts"
 
-#
 # JETBRAINS MONO NERD FONT
-#
-
 if [ ! -d "$HOME/.local/share/fonts/JetBrainsMono" ]; then
     mkdir -p "$HOME/.local/share/fonts/JetBrainsMono"
 
@@ -92,10 +71,7 @@ if [ ! -d "$HOME/.local/share/fonts/JetBrainsMono" ]; then
     fc-cache -fv
 fi
 
-#
 # PAPIRUS
-#
-
 if ! dpkg -s papirus-icon-theme >/dev/null 2>&1; then
     sudo apt update
     sudo apt install -y papirus-icon-theme
