@@ -25,6 +25,9 @@ sudo apt install -y fzf
 sudo apt install -y gpg
 sudo apt install -y pipx
 sudo apt install -y gir1.2-gnomedesktop-4.0
+sudo dpkg --add-architecture i386
+sudo apt update
+sudo apt install -y steam
 
 # Install eza
 if ! command -v eza >/dev/null 2>&1; then

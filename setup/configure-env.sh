@@ -133,5 +133,8 @@ if ! command -v bat >/dev/null 2>&1 && ! command -v batcat >/dev/null 2>&1; then
     ./install.sh /usr/local
 fi
 
+
+npm install -g nb.sh
+
 # Make zsh default shell 
 chsh -s $(which zsh)
