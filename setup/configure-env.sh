@@ -2,61 +2,30 @@
 
 set -e
 
-#
-# CHEZMOI
-#
+# Homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-sudo snap install chezmoi --classic
+# source ~/.bashrc
 
-#
-# NODE.JS + NPM
-#
+brew install chezmoi 
 
 # Download and install nvm:
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.6/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 
 # in lieu of restarting the shell
 \. "$HOME/.nvm/nvm.sh"
 
 # Download and install Node.js:
-nvm install 24
+nvm install --lts 
 
 # Verify the Node.js version:
-node -v # Should print "v24.18.0".
-
+node -v 
 # Verify npm version:
-npm -v # Should print "11.16.0".
+npm -v 
 
-#
-# GITHUB CLI
-#
+source ~/.bashrc
 
-if [ ! -f /usr/bin/gh ]; then
-  (type -p wget >/dev/null || (sudo apt update && sudo apt install -y wget))
-  sudo mkdir -p -m 755 /etc/apt/keyrings
-
-  out=$(mktemp)
-
-  wget -nv -O "$out" https://cli.github.com/packages/githubcli-archive-keyring.gpg
-
-  cat "$out" | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg >/dev/null
-
-  sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg
-
-  sudo mkdir -p -m 755 /etc/apt/sources.list.d
-
-  echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" |
-    sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null
-
-  sudo apt update
-  sudo apt install -y gh
-fi
-
-#
-# NPM GLOBALS
-#
-
-sudo npm install -g typescript
+npm install -g typescript
 
 #
 # UV
@@ -78,18 +47,21 @@ fi
 # OH MY ZSH
 #
 
-git clone --depth=1 \
-  https://github.com/ohmyzsh/ohmyzsh.git \
-  "$HOME/.oh-my-zsh"
+if [ ! -d "$HOME/.oh-my-zsh/.git" ]; then
+    git clone --depth=1 \
+        https://github.com/ohmyzsh/ohmyzsh.git \
+        "$HOME/.oh-my-zsh"
+fi
 
 #
 # POWERLEVEL10K
 #
 
-git clone --depth=1 \
+if [ ! -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k/.git" ]; then
+  git clone --depth=1 \
   https://github.com/romkatv/powerlevel10k.git \
   "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
-
+fi
 #
 # SET DEFAULT SHELL
 #
@@ -119,17 +91,10 @@ sudo apt install -y papirus-icon-theme
 
 sudo apt install -y gnome-sushi
 
-sudo apt install -y flameshot
-
 git clone --depth=1 \
   https://github.com/catppuccin/papirus-folders.git \
   /tmp/papirus-folders
 
 sudo cp -r /tmp/papirus-folders/src/* /usr/share/icons/Papirus/
 
-papirus-folders -C cat-mocha-mauve
-
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
-echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
-sudo apt update && sudo apt install gum
+# papirus-folders -C cat-mocha-mauve
