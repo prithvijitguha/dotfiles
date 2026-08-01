@@ -125,3 +125,8 @@ fi
 if ! command -v ghostty >/dev/null 2>&1; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh)"
 fi
+
+# Install bat 
+git clone https://github.com/bats-core/bats-core.git /tmp/bats-core
+cd /tmp/bats-core
+./install.sh /usr/local
