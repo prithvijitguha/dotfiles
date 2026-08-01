@@ -5,9 +5,9 @@ set -e
 # Homebrew
 if [ ! -d "/home/linuxbrew/.linuxbrew" ]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Chezmoi install
 if ! command -v chezmoi >/dev/null 2>&1; then
@@ -16,15 +16,15 @@ fi
 
 
 # Download and install Node.js:
-if ! brew list --formula node@24 >/dev/null 2>&1; then
+if ! command -v node@24 >/dev/null 2>&1; then
     brew install node@24
+    # Verify the Node.js version:
+    node -v # Should print "v24.18.1".
+    
+    # Verify npm version:
+    npm -v # Should print "11.16.0".
 fi
 
-# Verify the Node.js version:
-node -v # Should print "v24.18.1".
-
-# Verify npm version:
-npm -v # Should print "11.16.0".
 
 if ! npm list -g typescript >/dev/null 2>&1; then
     npm install -g typescript
@@ -106,7 +106,27 @@ if ! command -v bat >/dev/null 2>&1 && ! command -v batcat >/dev/null 2>&1; then
 fi
 
 
-npm install -g nb.sh
+if ! command -v nb >/dev/null 2>&1; then
+    npm install -g nb.sh
+fi
+
+
+# Google Chrome
+if ! command -v google-chrome >/dev/null 2>&1; then
+    wget -q -O /tmp/google-chrome.deb \
+        https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+    sudo apt install -y /tmp/google-chrome.deb
+
+    rm -f /tmp/google-chrome.deb
+fi
+
+# Hunk CLI 
+if ! command -v hunk >/dev/null 2>&1; then
+    brew install hunk
+    # Install hunk for page diff for git
+    git config --global core.pager "hunk pager"
+fi
 
 # Make zsh default shell 
 chsh -s $(which zsh)
