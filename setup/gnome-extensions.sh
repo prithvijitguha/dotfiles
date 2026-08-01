@@ -6,20 +6,10 @@ sudo apt install -y gnome-shell-extension-manager gir1.2-gtop-2.0 gir1.2-clutter
 pipx install gnome-extensions-cli --system-site-packages
 
 # Turn off default Ubuntu extensions
-gnome-extensions disable tiling-assistant@ubuntu.com
-gnome-extensions disable ubuntu-appindicators@ubuntu.com
-gnome-extensions disable ubuntu-dock@ubuntu.com
 gnome-extensions disable ding@rastersoft.com
 
-gnome-extensions enable blur-my-shell@aunetx
-gnome-extensions enable dash-to-dock@micxgx.gmail.com
-gnome-extensions enable just-perfection-desktop@just-perfection
-gnome-extensions enable rounded-window-corners@fxgn
-gnome-extensions enable tilingshell@ferrarodomenico.com
-gnome-extensions enable ding@rastersoft.com
-
 # Pause to assure user is ready to accept confirmations
-gum confirm "To install Gnome extensions, you need to accept some confirmations. Ready?"
+read -rp "Press Enter to install GNOME extensions..."
 
 # Install new extensions
 gext install tactile@lundal.io
@@ -30,18 +20,58 @@ gext install undecorate@sun.wxg@gmail.com
 gext install tophat@fflewddur.github.io
 gext install AlphabeticalAppGrid@stuarthayhurst
 gext install auto-move-windows@gnome-shell-extensions.gcampax.github.com
+gext install workspace-indicator@gnome-shell-extensions.gcampax.github.com
+gext install dash-to-dock@micxgx.gmail.com
+gext install rounded-window-corners@fxgn
+gext install tilingshell@ferrarodomenico.com
+gext install ding@rastersoft.com
 
-# Compile gsettings schemas in order to be able to set them
-sudo cp ~/.local/share/gnome-shell/extensions/tactile@lundal.io/schemas/org.gnome.shell.extensions.tactile.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/just-perfection-desktop\@just-perfection/schemas/org.gnome.shell.extensions.just-perfection.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/blur-my-shell\@aunetx/schemas/org.gnome.shell.extensions.blur-my-shell.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/tophat@fflewddur.github.io/schemas/org.gnome.shell.extensions.tophat.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/AlphabeticalAppGrid\@stuarthayhurst/schemas/org.gnome.shell.extensions.AlphabeticalAppGrid.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/auto-move-windows@gnome-shell-extensions.gcampax.github.com/schemas/org.gnome.shell.extensions.auto-move-windows.gschema.xml /usr/share/glib-2.0/schemas/
+gnome-extensions enable tactile@lundal.io
+gnome-extensions enable just-perfection-desktop@just-perfection
+gnome-extensions enable blur-my-shell@aunetx
+gnome-extensions enable space-bar@luchrioh
+gnome-extensions enable undecorate@sun.wxg@gmail.com
+gnome-extensions enable tophat@fflewddur.github.io
+gnome-extensions enable AlphabeticalAppGrid@stuarthayhurst
+gnome-extensions enable auto-move-windows@gnome-shell-extensions.gcampax.github.com
+gnome-extensions enable workspace-indicator@gnome-shell-extensions.gcampax.github.com
+gnome-extensions enable dash-to-dock@micxgx.gmail.com
+gnome-extensions enable rounded-window-corners@fxgn
+gnome-extensions enable tilingshell@ferrarodomenico.com
+gnome-extensions enable ding@rastersoft.com
+
+# Compile gsettings schemas
+sudo cp ~/.local/share/gnome-shell/extensions/tactile@lundal.io/schemas/org.gnome.shell.extensions.tactile.gschema.xml \
+    /usr/share/glib-2.0/schemas/
+
+sudo cp ~/.local/share/gnome-shell/extensions/just-perfection-desktop@just-perfection/schemas/org.gnome.shell.extensions.just-perfection.gschema.xml \
+    /usr/share/glib-2.0/schemas/
+
+sudo cp ~/.local/share/gnome-shell/extensions/blur-my-shell@aunetx/schemas/org.gnome.shell.extensions.blur-my-shell.gschema.xml \
+    /usr/share/glib-2.0/schemas/
+
+sudo cp ~/.local/share/gnome-shell/extensions/tophat@fflewddur.github.io/schemas/org.gnome.shell.extensions.tophat.gschema.xml \
+    /usr/share/glib-2.0/schemas/
+
+sudo cp ~/.local/share/gnome-shell/extensions/AlphabeticalAppGrid@stuarthayhurst/schemas/org.gnome.shell.extensions.AlphabeticalAppGrid.gschema.xml \
+    /usr/share/glib-2.0/schemas/
+
+sudo cp ~/.local/share/gnome-shell/extensions/auto-move-windows@gnome-shell-extensions.gcampax.github.com/schemas/org.gnome.shell.extensions.auto-move-windows.gschema.xml \
+    /usr/share/glib-2.0/schemas/
+
+sudo cp ~/.local/share/gnome-shell/extensions/workspace-indicator@gnome-shell-extensions.gcampax.github.com/schemas/org.gnome.shell.extensions.workspace-indicator.gschema.xml \
+    /usr/share/glib-2.0/schemas/
+
+sudo cp ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/org.gnome.shell.extensions.dash-to-dock.gschema.xml \
+    /usr/share/glib-2.0/schemas/
+
+sudo cp ~/.local/share/gnome-shell/extensions/rounded-window-corners@fxgn/schemas/org.gnome.shell.extensions.rounded-window-corners-reborn.gschema.xml \
+    /usr/share/glib-2.0/schemas/
+
+sudo cp ~/.local/share/gnome-shell/extensions/tilingshell@ferrarodomenico.com/schemas/org.gnome.shell.extensions.tilingshell.gschema.xml \
+    /usr/share/glib-2.0/schemas/
 
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
-
-gnome-extensions enable auto-move-windows@gnome-shell-extensions.gcampax.github.com
 
 # Configure Tactile
 gsettings set org.gnome.shell.extensions.tactile col-0 1

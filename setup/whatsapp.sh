@@ -1,8 +1,11 @@
 #!/bin/bash
 
-cp setup/icons/WhatsApp.png /home/$USER/.local/share/whatsapp/icons/WhatsApp.png
+mkdir -p $HOME/.local/share/application/whatsapp
+mkdir -p $HOME/.local/share/whatsapp/icons
 
-cat <<EOF >~/.local/share/applications/chrome-web.whatsapp.com__-Default.desktop
+cp setup/icons/WhatsApp.png $HOME/.local/share/whatsapp/icons/WhatsApp.png
+
+cat <<EOF >$HOME/.local/share/applications/chrome-web.whatsapp.com__-Default.desktop
 [Desktop Entry]
 Version=1.0
 Name=WhatsApp

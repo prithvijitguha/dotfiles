@@ -23,6 +23,7 @@ sudo apt install -y flameshot
 sudo apt install -y fd-find
 sudo apt install -y fzf
 sudo apt install -y gpg
+sudo apt install -y pipx
 # Install eza
 if ! command -v eza >/dev/null 2>&1; then
     sudo mkdir -p /etc/apt/keyrings
@@ -37,3 +38,11 @@ if ! command -v eza >/dev/null 2>&1; then
         /etc/apt/keyrings/gierens.gpg \
         /etc/apt/sources.list.d/gierens.list
 fi
+# Stremio
+sudo apt update
+sudo apt install -y flatpak
+
+flatpak remote-add --if-not-exists flathub \
+    https://flathub.org/repo/flathub.flatpakrepo
+
+flatpak install -y flathub com.stremio.Stremio
