@@ -7,8 +7,7 @@ gsettings set org.gnome.mutter center-new-windows true
 gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font 10'
 gsettings set org.gnome.desktop.interface document-font-name 'JetBrainsMono Nerd Font 10'
 
-# Reveal week numbers in the Gnome calendar
-gsettings set org.gnome.desktop.calendar show-weekdate true
+gsettings set org.gnome.desktop.interface enable-animations true
 
 gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Blue-Dark"
 THEME_COLOR="magenta"
