@@ -10,7 +10,7 @@ Dotfiles for Debian setup
 
 ![tmux](assets/tmux.jpeg)
 
-Demo Video [Demo Video](https://www.youtube.com/watch?v=mC2p9VvmNYI)
+[Demo Video](https://www.youtube.com/watch?v=mC2p9VvmNYI)
 
 ## Instructions to run
 
