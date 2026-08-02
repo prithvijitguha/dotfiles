@@ -10,9 +10,9 @@ Dotfiles for Debian setup
 
 ![tmux](assets/tmux.jpeg)
 
-## Instructions to run
+Demo Video [Demo Video](https://www.youtube.com/watch?v=mC2p9VvmNYI)
 
-[![Demo Video](https://youtu.be/3s-N7nsfI2Q)](https://youtu.be/3s-N7nsfI2Q)
+## Instructions to run
 
 ```shell
 chmod +x setup/* 
