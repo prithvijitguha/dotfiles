@@ -15,6 +15,7 @@ desktop_dirs=(
   "/usr/share/applications"
   "/usr/local/share/applications"
   "$HOME/.local/share/applications"
+  "$HOME/.steam"
 )
 
 installed_apps=()
