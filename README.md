@@ -2,7 +2,10 @@
 
 Dotfiles for Debian setup
 
-![Demo Screenshot](assets/dotfiles.jpeg)
+![desktop](assets/desktop.jpeg)
+![tiling_hotkeys](assets/tiling_hotkeys.jpeg)
+![browser_workspaces](assets/browser_workspaces.jpeg)
+![tmux](assets/tmux.jpeg)
 
 ## Instructions to run
 
@@ -13,17 +16,17 @@ chmod +x setup/*
 ```
 
 ```shell
-./setup/bootstrap.sh 
-./setup/install-apt-packages.sh 
-./setup/configure-env.sh 
-./setup/gnome-extensions.sh
-./setup/gnome-settings.sh
-./setup/whatsapp.sh
+./setup/bootstrap.sh         
+./setup/gnome-hotkeys.sh    
+./setup/install-additional-applications.sh  
+./setup/set-app-grid.sh  
+./setup/set-workspaces.sh  
 ./setup/youtube-music.sh
-./setup/set-app-grid.sh
-./setup/gnome-hotkeys.sh
-./setup/set-dock.sh
-./setup/set-workspaces.sh
+./setup/gnome-extensions.sh  
+./setup/gnome-settings.sh  
+./setup/install-apt-packages.sh             
+./setup/set-dock.sh      
+./setup/whatsapp.sh
 ```
 
 ```shell
