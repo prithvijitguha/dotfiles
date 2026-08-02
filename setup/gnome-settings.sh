@@ -12,8 +12,8 @@ gsettings set org.gnome.desktop.calendar show-weekdate true
 
 gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-Mocha-Standard-Blue-Dark"
 THEME_COLOR="magenta"
+
 # Turn off ambient sensors for setting screen brightness (they rarely work well!)
-gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface cursor-theme 'Yaru'
 gsettings set org.gnome.desktop.interface gtk-theme "Yaru-$THEME_COLOR-dark"
@@ -25,4 +25,5 @@ export BACKGROUND_DEST_PATH="$HOME/.local/share/backgrounds/shaded_landscape.png
 cp "./assets/shaded_landscape.png" $BACKGROUND_DEST_PATH
 gsettings set org.gnome.desktop.background picture-uri $BACKGROUND_DEST_PATH
 gsettings set org.gnome.desktop.background picture-uri-dark $BACKGROUND_DEST_PATH
+gsettings set org.gnome.desktop.background picture-options 'zoom'
 gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
