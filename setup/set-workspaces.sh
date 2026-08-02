@@ -27,7 +27,7 @@ gsettings set org.gnome.desktop.wm.preferences workspace-names \
 
 gsettings set org.gnome.shell.extensions.auto-move-windows application-list \
   "[
-'ghostty_ghostty.desktop:1',
+'com.mitchellh.ghostty.desktop:1',
 'firefox-esr.desktop:2',
 'steam.desktop:3',
 'com.stremio.Stremio.desktop:4',
