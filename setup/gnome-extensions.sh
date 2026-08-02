@@ -7,7 +7,6 @@ pipx install gnome-extensions-cli --system-site-packages
 
 # Turn off default Ubuntu extensions
 gnome-extensions disable ding@rastersoft.com
-
 # Pause to assure user is ready to accept confirmations
 read -rp "Press Enter to install GNOME extensions..."
 
@@ -42,34 +41,34 @@ gnome-extensions enable ding@rastersoft.com
 
 # Compile gsettings schemas
 sudo cp ~/.local/share/gnome-shell/extensions/tactile@lundal.io/schemas/org.gnome.shell.extensions.tactile.gschema.xml \
-    /usr/share/glib-2.0/schemas/
+  /usr/share/glib-2.0/schemas/
 
 sudo cp ~/.local/share/gnome-shell/extensions/just-perfection-desktop@just-perfection/schemas/org.gnome.shell.extensions.just-perfection.gschema.xml \
-    /usr/share/glib-2.0/schemas/
+  /usr/share/glib-2.0/schemas/
 
 sudo cp ~/.local/share/gnome-shell/extensions/blur-my-shell@aunetx/schemas/org.gnome.shell.extensions.blur-my-shell.gschema.xml \
-    /usr/share/glib-2.0/schemas/
+  /usr/share/glib-2.0/schemas/
 
 sudo cp ~/.local/share/gnome-shell/extensions/tophat@fflewddur.github.io/schemas/org.gnome.shell.extensions.tophat.gschema.xml \
-    /usr/share/glib-2.0/schemas/
+  /usr/share/glib-2.0/schemas/
 
 sudo cp ~/.local/share/gnome-shell/extensions/AlphabeticalAppGrid@stuarthayhurst/schemas/org.gnome.shell.extensions.AlphabeticalAppGrid.gschema.xml \
-    /usr/share/glib-2.0/schemas/
+  /usr/share/glib-2.0/schemas/
 
 sudo cp ~/.local/share/gnome-shell/extensions/auto-move-windows@gnome-shell-extensions.gcampax.github.com/schemas/org.gnome.shell.extensions.auto-move-windows.gschema.xml \
-    /usr/share/glib-2.0/schemas/
+  /usr/share/glib-2.0/schemas/
 
 sudo cp ~/.local/share/gnome-shell/extensions/workspace-indicator@gnome-shell-extensions.gcampax.github.com/schemas/org.gnome.shell.extensions.workspace-indicator.gschema.xml \
-    /usr/share/glib-2.0/schemas/
+  /usr/share/glib-2.0/schemas/
 
 sudo cp ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/org.gnome.shell.extensions.dash-to-dock.gschema.xml \
-    /usr/share/glib-2.0/schemas/
+  /usr/share/glib-2.0/schemas/
 
 sudo cp ~/.local/share/gnome-shell/extensions/rounded-window-corners@fxgn/schemas/org.gnome.shell.extensions.rounded-window-corners-reborn.gschema.xml \
-    /usr/share/glib-2.0/schemas/
+  /usr/share/glib-2.0/schemas/
 
 sudo cp ~/.local/share/gnome-shell/extensions/tilingshell@ferrarodomenico.com/schemas/org.gnome.shell.extensions.tilingshell.gschema.xml \
-    /usr/share/glib-2.0/schemas/
+  /usr/share/glib-2.0/schemas/
 
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
@@ -104,11 +103,11 @@ gsettings set org.gnome.shell.extensions.blur-my-shell.dash-to-dock style-dash-t
 
 # Configure TopHat
 gsettings set org.gnome.shell.extensions.tophat show-icons false
-gsettings set org.gnome.shell.extensions.tophat show-cpu false
+gsettings set org.gnome.shell.extensions.tophat show-cpu true
 gsettings set org.gnome.shell.extensions.tophat show-disk false
-gsettings set org.gnome.shell.extensions.tophat show-mem false
+gsettings set org.gnome.shell.extensions.tophat show-mem true
 gsettings set org.gnome.shell.extensions.tophat show-fs false
-gsettings set org.gnome.shell.extensions.tophat network-usage-unit bits
-
+gsettings set org.gnome.shell.extensions.tophat network-usage-unit bytes
+gsettings set org.gnome.shell.extensions.tophat meter-fg-color "#e920a3"
 # Configure AlphabeticalAppGrid
 gsettings set org.gnome.shell.extensions.alphabetical-app-grid folder-order-position 'end'
