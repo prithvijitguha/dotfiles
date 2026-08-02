@@ -3,8 +3,11 @@
 Dotfiles for Debian setup
 
 ![desktop](assets/desktop.jpeg)
+
 ![tiling_hotkeys](assets/tiling_hotkeys.jpeg)
+
 ![browser_workspaces](assets/browser_workspaces.jpeg)
+
 ![tmux](assets/tmux.jpeg)
 
 ## Instructions to run
