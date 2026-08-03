@@ -42,10 +42,8 @@ if [ ! -f "$HOME/.cargo/bin/rustup" ]; then
 fi
 
 # OH MY ZSH
-if [ ! -d "$HOME/.oh-my-zsh/.git" ]; then
-  git clone --depth=1 \
-    https://github.com/ohmyzsh/ohmyzsh.git \
-    "$HOME/.oh-my-zsh"
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
 # POWERLEVEL10K
