@@ -5,6 +5,8 @@ gsettings set org.gnome.desktop.wm.keybindings close "['<Super>w']"
 
 # Make it easy to maximize like you can fill left/right
 gsettings set org.gnome.desktop.wm.keybindings maximize "['<Super>Up']"
+# Setup minimize for apps
+gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
 gsettings set org.gnome.desktop.wm.keybindings minimize "['<Super>h']"
 # Make it easy to resize undecorated windows
 gsettings set org.gnome.desktop.wm.keybindings begin-resize "['<Super>BackSpace']"
@@ -18,11 +20,9 @@ gsettings set org.gnome.desktop.wm.keybindings toggle-fullscreen "['<Shift>F11']
 # Use 6 fixed workspaces instead of dynamic mode
 gsettings set org.gnome.mutter dynamic-workspaces false
 gsettings set org.gnome.desktop.wm.preferences num-workspaces 6
-
-# Disable the hotkeys in the Dash to Dock extension (most likely culprit)
 gsettings set org.gnome.shell.extensions.dash-to-dock hot-keys false
 
-# Use alt for pinned apps
+# Application Shortcuts
 gsettings set org.gnome.shell.keybindings switch-to-application-1 "['<Super>1']"
 gsettings set org.gnome.shell.keybindings switch-to-application-2 "['<Super>2']"
 gsettings set org.gnome.shell.keybindings switch-to-application-3 "['<Super>3']"
@@ -33,7 +33,7 @@ gsettings set org.gnome.shell.keybindings switch-to-application-7 "['<Super>7']"
 gsettings set org.gnome.shell.keybindings switch-to-application-8 "['<Super>8']"
 gsettings set org.gnome.shell.keybindings switch-to-application-9 "['<Super>9']"
 
-# Use super for workspaces
+# Workspace shortcuts
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-1 "['<Alt>1']"
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-2 "['<Alt>2']"
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-3 "['<Alt>3']"
